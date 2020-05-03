@@ -1,156 +1,167 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvasOrginal = document.querySelector("#canvas1");
+const canvasEdit = document.querySelector("#canvas2");
+const ctxOrginal = canvasOrginal.getContext('2d');
+const ctxEdit = canvasEdit.getContext('2d');
 
 let img = new Image();
-let fileName = "";
+let fileName = '';
 
-const downloadBtn = document.getElementById("download-btn");
-const uploadFile = document.getElementById("upload-file");
-const revertBtn = document.getElementById("revert-btn");
+const downloadBtn = document.querySelector("#download-btn");
+const uploadFile = document.querySelector("#upload-file");
+const revertBtn = document.querySelector("#revert-btn");
 
-// Filter & Effect Handlers
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("filter-btn")) {
-    if (e.target.classList.contains("brightness-add")) {
-      Caman("#canvas", img, function() {
+
+
+// add filter & effect
+// using event delagtion insted of ser event lister to all button
+document.addEventListener('click' , (e)=>{
+  if(e.target.classList.contains('filter-btn')){
+    
+    if(e.target.classList.contains('brightness-add')){
+      Caman('#canvas2' , img , function(){
         this.brightness(5).render();
       });
-    } else if (e.target.classList.contains("brightness-remove")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('brightness-remove')){
+      Caman('#canvas2' , img , function(){
         this.brightness(-5).render();
       });
-    } else if (e.target.classList.contains("contrast-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('contrast-add')){
+      Caman('#canvas2' , img , function(){
         this.contrast(5).render();
       });
-    } else if (e.target.classList.contains("contrast-remove")) {
-      Caman("#canvas", img, function() {
+    }  else if(e.target.classList.contains('contrast-remove')){
+      Caman('#canvas2' , img , function(){
         this.contrast(-5).render();
       });
-    } else if (e.target.classList.contains("saturation-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('saturation-add')){
+      Caman('#canvas2' , img , function(){
         this.saturation(5).render();
       });
-    } else if (e.target.classList.contains("saturation-remove")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('saturation-remove')){
+      Caman('#canvas2' , img , function(){
         this.saturation(-5).render();
       });
-    } else if (e.target.classList.contains("vibrance-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('vibrance-add')){
+      Caman('#canvas2' , img , function(){
         this.vibrance(5).render();
       });
-    } else if (e.target.classList.contains("vibrance-remove")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('vibrance-remove')){
+      Caman('#canvas2' , img , function(){
         this.vibrance(-5).render();
       });
-    } else if (e.target.classList.contains("vintage-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('vintage-add')){
+      Caman('#canvas2' , img , function(){
         this.vintage().render();
       });
-    } else if (e.target.classList.contains("lomo-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('lomo-add')){
+      Caman('#canvas2' , img , function(){
         this.lomo().render();
       });
-    } else if (e.target.classList.contains("clarity-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('clarity-add')){
+      Caman('#canvas2' , img , function(){
         this.clarity().render();
       });
-    } else if (e.target.classList.contains("sincity-add")) {
-      Caman("#canvas", img, function() {
+    } else if(e.target.classList.contains('sincity-add')){
+      Caman('#canvas2' , img , function(){
         this.sinCity().render();
       });
     } else if (e.target.classList.contains("crossprocess-add")) {
-      Caman("#canvas", img, function() {
+      Caman("#canvas2", img, function() {
         this.crossProcess().render();
       });
     } else if (e.target.classList.contains("pinhole-add")) {
-      Caman("#canvas", img, function() {
+      Caman("#canvas2", img, function() {
         this.pinhole().render();
       });
     } else if (e.target.classList.contains("nostalgia-add")) {
-      Caman("#canvas", img, function() {
+      Caman("#canvas2", img, function() {
         this.nostalgia().render();
       });
     } else if (e.target.classList.contains("hermajesty-add")) {
-      Caman("#canvas", img, function() {
+      Caman("#canvas2", img, function() {
         this.herMajesty().render();
       });
     }
   }
-});
+})
 
-// Revert Filters
-revertBtn.addEventListener("click", e => {
-  Caman("#canvas", img, function() {
-    this.revert();
-  });
-});
-
-// Upload File
-uploadFile.addEventListener("change", () => {
-  // Get File
-  const file = document.getElementById("upload-file").files[0];
-  // Init FileReader API
+//Upload file
+uploadFile.addEventListener('change' , ()=>{
+  //get file
+  const file = document.querySelector("#upload-file").files[0];
+  // iniy filereader
   const reader = new FileReader();
 
-  // Check for file
-  if (file) {
-    // Set file name
+  if(file){
+    // set file name 
     fileName = file.name;
-    // Read data as URL
+    console.log(fileName);
+    // read data as url
     reader.readAsDataURL(file);
   }
+  //add image to canvas
+  reader.addEventListener('load' , ()=>{
+    // create img
+    img = new Image();
+    // set src
+    img.src = reader.result;
+    // on image load . add to canvas
+    img.onload = ()=>{
+      canvasOrginal.width = img.width;
+      canvasOrginal.height = img.height;
+      ctxOrginal.drawImage(img , 0 , 0 , img.width , img.height);
+      canvasOrginal.removeAttribute('data-caman-id');
 
-  // Add image to canvas
-  reader.addEventListener(
-    "load",
-    () => {
-      // Create image
-      img = new Image();
-      // Set image src
-      img.src = reader.result;
-      // On image load add to canvas
-      img.onload = function() {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.removeAttribute("data-caman-id");
-      };
-    },
-    false
-  );
+      //add img to canvas two
+      canvasEdit.width = img.width;
+      canvasEdit.height = img.height;
+      ctxEdit.drawImage(img , 0 , 0 , img.width , img.height);
+      canvasEdit.removeAttribute('data-caman-id');
+    } 
+  }, false);
 });
 
-// Download Event
-downloadBtn.addEventListener("click", () => {
-  // Get ext
+//revert filter
+revertBtn.addEventListener('click' , ()=>{
+  Caman('#canvas2', img , function(){
+    this.revert();
+  });
+})
+
+
+//download event
+downloadBtn.addEventListener('click' , ()=>{
+  // get file ext
   const fileExtension = fileName.slice(-4);
+  console.log(fileExtension);
 
-  // Init new filename
-  let newFilename;
+  //init new file name
+  let newFileName;
 
-  // Check image type
-  if (fileExtension === ".jpg" || fileExtension === ".png") {
-    // new filename
-    newFilename = fileName.substring(0, fileName.length - 4) + "-edited.jpg";
+  //check image type
+  if(fileExtension === '.jpg'  || fileExtension === '.png'){
+    newFileName = fileName.substring(0, fileName.length-4)+"-edited" + fileExtension;
+    console.log(newFileName);
   }
 
-  // Call download
-  download(canvas, newFilename);
+  // call download
+  download(canvasEdit , newFileName);
 });
 
-// Download
-function download(canvas, filename) {
-  // Init event
-  let e;
-  // Create link
-  const link = document.createElement("a");
 
-  // Set props
-  link.download = filename;
-  link.href = canvas.toDataURL("image/jpeg", 0.8);
-  // New mouse event
-  e = new MouseEvent("click");
-  // Dispatch event
+function download(canvasEdit , fileName){
+  //init event
+  let e;
+  //create a link
+  const link = document.createElement('a');
+
+  // set property
+  link.download = fileName;
+  link.href = canvasEdit.toDataURL('image/jpeg' , 0.8);
+  //new mouse event
+  e = new MouseEvent('click')
+  //dispatch event
   link.dispatchEvent(e);
 }
+
+
