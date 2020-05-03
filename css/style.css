@@ -1,11 +1,32 @@
+body{
+  background: #F9F9F9 !important;
+}
 
+header , footer{
+  background: #062A4E !important;
+  color: #F2FFFF !important;
+  font-weight: bold;
+  
+}
 canvas {
     margin: auto;
     background: #ececec;
     width: 100%;
   }
-  
+
   .btn-disabled {
     color: #fff !important;
+  }
+
+  .btn-in{
+    background: #062A4E;
+    color: #F2FFFF;
+    font-weight: bold;
+  }
+
+  .btn-in:hover{
+    background: #062A4E;
+    color: red;
+    
   }
   
