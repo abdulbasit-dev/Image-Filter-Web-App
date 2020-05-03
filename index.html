@@ -10,11 +10,14 @@
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- min.css bootstrap -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    
     <!-- my style -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
+
     <header>
         <nav class="navbar navbar-dark bg-info mb-5">
             <div class="container">
@@ -24,28 +27,22 @@
     </header>
 
     <main>
-        <div class="container">
-            <section id="addFile">
+
+    </main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 m-auto">
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" id="upload-file">
                     <label for="upload-file" class="custom-file-label">Choose Image</label>
                 </div>
+                <canvas id="canvas"></canvas>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <canvas id="canvas1"></canvas>
-                    </div>
-                    <div class="col-md-6">
-                        <canvas id="canvas2"></canvas>
-                    </div>
-                </div>
-            </section>
+                <h4 class="text-center my-3">Filters</h4>
 
-            <section id="filter" class="text-center py-5">
-                <h4 class=" my-3">Filters</h4>
-                <div class="row my-4 ">
+                <div class="row my-4 text-center">
                     <div class="col-md-3">
-                        <div class="btn-group ">
+                        <div class="btn-group btn-group-sm">
                             <button class="filter-btn brightness-remove btn btn-info">-</button>
                             <button class="btn btn-secondary btn-disabled" disabled>Brightness</button>
                             <button class="filter-btn brightness-add btn btn-info">+</button>
@@ -53,7 +50,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <div class="btn-group ">
+                        <div class="btn-group btn-group-sm">
                             <button class="filter-btn contrast-remove btn btn-info">-</button>
                             <button class="btn btn-secondary btn-disabled" disabled>Contrast</button>
                             <button class="filter-btn contrast-add btn btn-info">+</button>
@@ -61,7 +58,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <div class="btn-group ">
+                        <div class="btn-group btn-group-sm">
                             <button class="filter-btn saturation-remove btn btn-info">-</button>
                             <button class="btn btn-secondary btn-disabled" disabled>Saturation</button>
                             <button class="filter-btn saturation-add btn btn-info">+</button>
@@ -69,7 +66,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <div class="btn-group ">
+                        <div class="btn-group btn-group-sm">
                             <button class="filter-btn vibrance-remove btn btn-info">-</button>
                             <button class="btn btn-secondary btn-disabled" disabled>Vibrance</button>
                             <button class="filter-btn vibrance-add btn btn-info">+</button>
@@ -77,10 +74,9 @@
                     </div>
                 </div>
                 <!-- ./row -->
-            </section>
 
-            <section id="effects">
                 <h4 class="text-center my-3">Effects</h4>
+
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <button class="filter-btn vintage-add btn btn-dark btn-block">
@@ -126,10 +122,8 @@
                         </button>
                     </div>
                 </div>
-            </section>
 
-            <section id="action" class="my-5">
-                <div class="row">
+                <div class="row mt-5 mb-4">
                     <div class="col-md-6">
                         <button id="download-btn" class="btn btn-primary btn-block">Download Image</button>
                     </div>
@@ -137,8 +131,9 @@
                         <button id="revert-btn" class="btn btn-danger btn-block">Remove Filters</button>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
+    </div>
     </main>
 
     <footer class="p-4 bg-dark text-white">
