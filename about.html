@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- min.css bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- my style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="shadow-lg mb-5">
+        <nav class="navbar navbar-expand-md navbar-dark  p-3">
+            <div class="container">
+                <a href="index.html" class="navbar-brand"><i class="far fa-images fa-3x p-0"></i></a>
+                <ul class="navbar-nav h5 nav ">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="image-filter.html" class="nav-link  ">Image Filter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="steganography.html" class="nav-link">Steganography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link active">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+        
+        </div>
+    </main>
+
+    <footer class="p-4 fixed-bottom">
+        <div class="row text-center">
+            <div class="col-md-6 mx-auto">
+                <h4>Website Made With love <i class="fas fa-heart text-danger"></i></h4>
+                <p>copyright &copy; <span id="year"></span></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- min jquery  -->
+    <script src="jquery-3.4.1.min.js"></script>
+    <!-- min.js bootstraop  (min.js + propper.js)-->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Own Script  -->
+    <script src="script.js"></script>
+    <script>
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear());
+    </script>
+</body>
+
+</html>
